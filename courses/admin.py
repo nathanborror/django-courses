@@ -1,5 +1,5 @@
 from django.contrib import admin
-from nathanborror.apps.courses.models import *
+from courses.models import *
 
 
 class CourseAdmin(admin.ModelAdmin):

@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic import date_based, list_detail
 
-from nathanborror.apps.courses.models import *
+from courses.models import *
 
 
 def course_list(request, **kwargs):

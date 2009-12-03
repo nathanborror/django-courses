@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 
 
-urlpatterns = patterns('nathanborror.apps.courses.views',
+urlpatterns = patterns('courses.views',
     url(r'^$',
         view='course_list',
         name='courses'),
