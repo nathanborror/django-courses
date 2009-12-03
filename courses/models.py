@@ -69,8 +69,7 @@ class Project(AbstractModel):
 
 def get_example_image_path(instance, filename):
     import os.path, hashlib
-    name = "%s_%s_%s" % (instance.project.course.pk, instance.project.pk, instance.pk)
-    name = hashlib.md5(name).hexdigest()
+    name = hashlib.md5(instance.title).hexdigest()
     ext = os.path.splitext(filename)
     return os.path.join('examples', '%s%s' % (name, ext[1]))
 
