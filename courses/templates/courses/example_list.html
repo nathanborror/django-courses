@@ -1,0 +1,27 @@
+{% extends "courses/base_courses.html" %}
+
+
+{% block title %}{{ project.title }} examples{% endblock %}
+{% block body_class %}{{ block.super }} example_list{% endblock %}
+{% block body_id %}project_{{ project.pk }}{% endblock %}
+
+
+{% block content_title %}
+  <h2>{{ project.title }} <em>examples</em></h2>
+  <h3><a href="{{ course.get_absolute_url }}">{{ course.title }}</a> &rsaquo; <a href="{{ project.get_absolute_url }}">{{ project.title }}</a> &rsaquo; Examples</h3>
+{% endblock %}
+
+
+{% block content %}
+  {% load markup %}
+
+  <div class="list">
+    {% for example in example_list %}
+      <div class="item" id="example{{ example.pk }}">
+        <h3>{{ example.title }}</h3>
+        <img src="{{ example.image.url }}" width="470" alt="">
+        {{ example.description|markdown }}
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

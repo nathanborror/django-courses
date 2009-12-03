@@ -1,0 +1,22 @@
+{% extends "courses/base_courses.html" %}
+
+
+{% block title %}{{ course.title }} projects{% endblock %}
+{% block body_class %}{{ block.super }} course_project_list{% endblock %}
+
+
+{% block content_title %}
+  <h2>Projects</h2>
+  <h3><a href="{{ course.get_absolute_url }}">{{ course.title }}</a> &rsaquo; Projects</h3>
+{% endblock %}
+
+
+{% block content %}
+  {% if project_list %}
+    <ul>
+      {% for project in project_list %}
+      <li><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "courses/base_courses.html" %}
+
+
+{% block title %}Courses{% endblock %}
+{% block body_class %}{{ block.super }} course_list{% endblock %}
+
+
+{% block content_title %}
+  <h2>Courses</h2>
+{% endblock %}
+
+
+{% block content %}
+  {% if course_list %}
+    <ul>
+      {% for course in course_list %}
+      <li><a href="{{ course.get_absolute_url }}">{{ course.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

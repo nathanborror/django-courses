@@ -1,0 +1,51 @@
+{% extends "courses/base_courses.html" %}
+
+
+{% block title %}{{ project.title }}{% endblock %}
+{% block body_class %}{{ block.super }} project_detail{% endblock %}
+{% block body_id %}project_{{ project.pk }}{% endblock %}
+
+
+{% block content_title %}
+  <h2>{{ project.title }}</h2>
+  <h3><a href="{{ course.get_absolute_url }}">{{ course.title }}</a> &rsaquo; {{ project.title }}</h3>
+{% endblock %}
+
+
+{% block content %}
+  {% load markup %}
+
+  {% if project.description %}
+    <h3>Description</h3>
+    {{ project.description|markdown }}
+  {% endif %}
+
+  {% if project.goals %}
+    <h3>Goals</h3>
+    {{ project.goals|markdown }}
+  {% endif %}
+
+  {% if project.requirements %}
+    <h3>Requirements</h3>
+    {{ project.requirements|markdown }}
+  {% endif %}
+
+  {% if project.resources %}
+    <h3>Resources</h3>
+    {{ project.resources|markdown }}
+  {% endif %}
+
+  {% if project.evaluation %}
+    <h3>Evaluation</h3>
+    {{ project.evaluation|markdown }}
+  {% endif %}
+  
+  {% if project.examples.count %}
+    <h3>Examples</h3>
+    <ul>
+      {% for example in project.examples.all %}
+        <li><a href="{% url courses:project_examples course_slug=course.slug, slug=project.slug %}#example{{ example.pk }}">{{ example.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}
