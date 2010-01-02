@@ -24,8 +24,8 @@ class Course(AbstractModel):
     requirements = models.TextField(blank=True)
     resources = models.TextField(blank=True)
     evaluation = models.TextField(blank=True)
-    start_date = models.DateField(auto_now_add=True)
-    finish_date = models.DateField(auto_now_add=True)
+    start_date = models.DateField(default=datetime.datetime.now())
+    finish_date = models.DateField(default=datetime.datetime.now())
 
     class Meta:
         verbose_name = _('course')
@@ -51,8 +51,8 @@ class Project(AbstractModel):
     requirements = models.TextField(blank=True)
     resources = models.TextField(blank=True)
     evaluation = models.TextField(blank=True)
-    start_date = models.DateField(auto_now_add=True)
-    finish_date = models.DateField(auto_now_add=True)
+    start_date = models.DateField(default=datetime.datetime.now())
+    finish_date = models.DateField(default=datetime.datetime.now())
 
     class Meta:
         verbose_name = _('project')
@@ -125,8 +125,8 @@ class Assignment(AbstractModel):
     slug = models.SlugField()
     assignment_type = models.PositiveSmallIntegerField(choices=ASSIGNMENT_TYPES, blank=True, null=True)
     assignment = models.TextField(blank=True)
-    start_date = models.DateField(auto_now_add=True)
-    finish_date = models.DateField(auto_now_add=True)
+    start_date = models.DateField(default=datetime.datetime.now())
+    finish_date = models.DateField(default=datetime.datetime.now())
 
     class Meta:
         verbose_name = _('assignment')
