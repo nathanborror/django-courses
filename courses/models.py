@@ -137,39 +137,3 @@ class Student(models.Model):
 
     def __unicode__(self):
         return self.user.get_full_name()
-
-
-# class Solution(models.Model):
-#     """ Solution model """
-#     project = models.ForeignKey(Project)
-#     student = models.ForeignKey(Student)
-#     solution = models.TextField(blank=True)
-#     created = models.DateTimeField(auto_now_add=True)
-#     modified = models.DateTimeField(auto_now=True)
-# 
-#     class Meta:
-#         verbose_name = _('solution')
-#         verbose_name_plural = _('solutions')
-#         db_table = 'course_solutions'
-# 
-#     def __unicode__(self):
-#         return '<Solution>'
-# 
-# 
-# class SolutionMedia(models.Model):
-#     """ SolutionMedia model """
-#     solution = models.ForeignKey(Solution)
-#     title = models.CharField(blank=True, max_length=255)
-#     slug = models.SlugField()
-#     media = models.FileField(upload_to='media')
-#     created = models.DateTimeField(auto_now_add=True)
-#     modified = models.DateTimeField(auto_now=True)
-# 
-#     class Meta:
-#         verbose_name = _('solution media')
-#         verbose_name_plural = _('solution media')
-#         db_table = 'course_solution_media'
-#         order_with_respect_to = 'solution'
-# 
-#     def __unicode__(self):
-#         return '<SolutionMedia>'
