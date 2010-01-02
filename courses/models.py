@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
@@ -67,6 +69,22 @@ class Project(AbstractModel):
             'course_slug': self.course.slug,
             'slug': self.slug
         })
+
+
+class Milestone(AbstractModel):
+    """ Milestone model """
+    project = models.ForeignKey(Project, related_name='milestones')
+    title = models.CharField(blank=True, max_length=255)
+    due = models.DateTimeField(blank=True, null=True, default=datetime.datetime.now())
+
+    class Meta:
+        verbose_name = _('milestone')
+        verbose_name_plural = _('milestones')
+        ordering = ['-due']
+        db_table = 'course_milestones'
+
+    def __unicode__(self):
+        return self.title
 
 
 def get_example_image_path(instance, filename):

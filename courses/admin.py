@@ -13,6 +13,12 @@ class ProjectAdmin(admin.ModelAdmin):
 admin.site.register(Project, ProjectAdmin)
 
 
+class MilestoneAdmin(admin.ModelAdmin):
+    list_display  = ('title', 'project')
+    list_filter   = ('project',)
+admin.site.register(Milestone, MilestoneAdmin)
+
+
 class ExampleAdmin(admin.ModelAdmin):
     list_display  = ('title', 'project')
     list_filter   = ('project',)

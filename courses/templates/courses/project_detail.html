@@ -25,6 +25,15 @@
     {{ project.goals|markdown }}
   {% endif %}
 
+  {% if project.milestones.count %}
+    <h3>Milestones</h3>
+    <ul>
+      {% for milestone in project.milestones.all %}
+      <li><span>{{ milestone.due|date|default:'TBA' }}</span> &mdash; {{ milestone }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
   {% if project.requirements %}
     <h3>Requirements</h3>
     {{ project.requirements|markdown }}
