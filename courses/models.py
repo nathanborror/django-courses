@@ -5,8 +5,6 @@ from django.db.models import permalink
 
 
 class AbstractModel(models.Model):
-    start_date = models.DateField(auto_now_add=True)
-    finish_date = models.DateField(auto_now_add=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
@@ -24,6 +22,8 @@ class Course(AbstractModel):
     requirements = models.TextField(blank=True)
     resources = models.TextField(blank=True)
     evaluation = models.TextField(blank=True)
+    start_date = models.DateField(auto_now_add=True)
+    finish_date = models.DateField(auto_now_add=True)
 
     class Meta:
         verbose_name = _('course')
@@ -49,6 +49,8 @@ class Project(AbstractModel):
     requirements = models.TextField(blank=True)
     resources = models.TextField(blank=True)
     evaluation = models.TextField(blank=True)
+    start_date = models.DateField(auto_now_add=True)
+    finish_date = models.DateField(auto_now_add=True)
 
     class Meta:
         verbose_name = _('project')
@@ -73,7 +75,7 @@ def get_example_image_path(instance, filename):
     ext = os.path.splitext(filename)
     return os.path.join('examples', '%s%s' % (name, ext[1]))
 
-class Example(models.Model):
+class Example(AbstractModel):
     """ Example model """
     project = models.ForeignKey(Project, related_name='examples')
     title = models.CharField(max_length=255)
@@ -105,6 +107,8 @@ class Assignment(AbstractModel):
     slug = models.SlugField()
     assignment_type = models.PositiveSmallIntegerField(choices=ASSIGNMENT_TYPES, blank=True, null=True)
     assignment = models.TextField(blank=True)
+    start_date = models.DateField(auto_now_add=True)
+    finish_date = models.DateField(auto_now_add=True)
 
     class Meta:
         verbose_name = _('assignment')
@@ -123,12 +127,10 @@ class Assignment(AbstractModel):
         })
 
 
-class Student(models.Model):
+class Student(AbstractModel):
     """ Student model """
     user = models.ForeignKey(User)
     courses = models.ManyToManyField(Course, related_name='students')
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = _('student')
