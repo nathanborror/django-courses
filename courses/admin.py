@@ -13,17 +13,17 @@ class ProjectAdmin(admin.ModelAdmin):
 admin.site.register(Project, ProjectAdmin)
 
 
-class MilestoneAdmin(admin.ModelAdmin):
+class ProjectMilestoneAdmin(admin.ModelAdmin):
     list_display  = ('title', 'project')
     list_filter   = ('project',)
-admin.site.register(Milestone, MilestoneAdmin)
+admin.site.register(ProjectMilestone, ProjectMilestoneAdmin)
 
 
-class ExampleAdmin(admin.ModelAdmin):
+class ProjectExampleAdmin(admin.ModelAdmin):
     list_display  = ('title', 'project')
     list_filter   = ('project',)
     prepopulated_fields = {'slug': ('title',)}
-admin.site.register(Example, ExampleAdmin)
+admin.site.register(ProjectExample, ProjectExampleAdmin)
 
 
 class AssignmentAdmin(admin.ModelAdmin):
@@ -31,8 +31,3 @@ class AssignmentAdmin(admin.ModelAdmin):
     list_filter   = ('course', 'project')
     prepopulated_fields = {'slug': ('title',)}
 admin.site.register(Assignment, AssignmentAdmin)
-
-
-class StudentAdmin(admin.ModelAdmin):
-    list_display  = ('user',)
-admin.site.register(Student, StudentAdmin)
