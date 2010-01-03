@@ -7,20 +7,20 @@
 
 {% block sidebar %}
   {% if course.projects.count %}
-  <h4><a href="{% url courses:projects course_slug=course.slug %}">Projects</a></h4>
-  <ul>
-    {% for project in course.projects.all %}
-    <li><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></li>
-    {% endfor %}
-  </ul>
+    <h4><a href="{% url courses:projects course_slug=course.slug %}">Projects</a></h4>
+    <ul>
+      {% for project in course.projects.all %}
+      <li><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></li>
+      {% endfor %}
+    </ul>
   {% endif %}
 
   {% if course.assignments.count %}
-  <h4><a href="{% url courses:assignments course_slug=course.slug %}">Assignments</a></h4>
-  <ul>
-    {% for assignment in course.assignments.all %}
-    <li><a href="{{ assignment.get_absolute_url }}">{{ assignment.title }}</a></li>
-    {% endfor %}
-  </ul>
+    <h4><a href="{% url courses:assignments course_slug=course.slug %}">Assignments</a></h4>
+    <ul>
+      {% for assignment in course.assignments.all %}
+      <li><a href="{{ assignment.get_absolute_url }}">{{ assignment.title }}</a></li>
+      {% endfor %}
+    </ul>
   {% endif %}
 {% endblock %}

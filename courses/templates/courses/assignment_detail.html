@@ -14,9 +14,5 @@
 
 {% block content %}
   {% load markup %}
-
-  {% if assignment.assignment %}
-    <h3>Assignment</h3>
-    {{ assignment.assignment|markdown }}
-  {% endif %}
+  {{ assignment.description|markdown }}
 {% endblock %}

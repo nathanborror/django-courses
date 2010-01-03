@@ -13,29 +13,5 @@
 
 {% block content %}
   {% load markup %}
-
-  {% if course.description %}
-    <h3>Description</h3>
-    {{ course.description|markdown }}
-  {% endif %}
-
-  {% if course.goals %}
-    <h3>Goals</h3>
-    {{ course.goals|markdown }}
-  {% endif %}
-
-  {% if course.requirements %}
-    <h3>Requirements</h3>
-    {{ course.requirements|markdown }}
-  {% endif %}
-
-  {% if course.resources %}
-    <h3>Resources</h3>
-    {{ course.resources|markdown }}
-  {% endif %}
-
-  {% if course.evaluation %}
-    <h3>Evaluation</h3>
-    {{ course.evaluation|markdown }}
-  {% endif %}
+  {{ course.description|markdown }}
 {% endblock %}

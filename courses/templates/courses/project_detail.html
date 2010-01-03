@@ -15,16 +15,6 @@
 {% block content %}
   {% load markup %}
 
-  {% if project.description %}
-    <h3>Description</h3>
-    {{ project.description|markdown }}
-  {% endif %}
-
-  {% if project.goals %}
-    <h3>Goals</h3>
-    {{ project.goals|markdown }}
-  {% endif %}
-
   {% if project.milestones.count %}
     <h3>Milestones</h3>
     <ul>
@@ -34,21 +24,8 @@
     </ul>
   {% endif %}
 
-  {% if project.requirements %}
-    <h3>Requirements</h3>
-    {{ project.requirements|markdown }}
-  {% endif %}
+  {{ project.description|markdown }}
 
-  {% if project.resources %}
-    <h3>Resources</h3>
-    {{ project.resources|markdown }}
-  {% endif %}
-
-  {% if project.evaluation %}
-    <h3>Evaluation</h3>
-    {{ project.evaluation|markdown }}
-  {% endif %}
-  
   {% if project.examples.count %}
     <h3>Examples</h3>
     <ul>
