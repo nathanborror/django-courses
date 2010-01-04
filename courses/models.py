@@ -58,7 +58,7 @@ class Project(AbstractModel):
 
 
 class ProjectMilestone(AbstractModel):
-    """ Milestone model """
+    """ Project milestone model """
     project = models.ForeignKey(Project, related_name='milestones')
     title = models.CharField(blank=True, max_length=255)
     due = models.DateTimeField(blank=True, null=True, default=datetime.datetime.now())
@@ -79,7 +79,7 @@ def get_example_image_path(instance, filename):
     return os.path.join('examples', '%s%s' % (name, ext[1]))
 
 class ProjectExample(AbstractModel):
-    """ Example model """
+    """ Project example model """
     project = models.ForeignKey(Project, related_name='examples')
     title = models.CharField(max_length=255)
     slug = models.SlugField()

@@ -62,7 +62,7 @@ def project_example_list(request, course_slug, slug, **kwargs):
     project = get_object_or_404(Project, slug=slug)
     return list_detail.object_list(
         request,
-        queryset=Example.objects.filter(project=project),
+        queryset=ProjectExample.objects.filter(project=project),
         template_object_name='example',
         extra_context = {
             'course': course,

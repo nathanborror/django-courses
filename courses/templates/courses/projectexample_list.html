@@ -19,7 +19,7 @@
     {% for example in example_list %}
       <div class="item" id="example{{ example.pk }}">
         <h3>{{ example.title }}</h3>
-        <img src="{{ example.image.url }}" width="470" alt="">
+        <img src="{{ example.image.url }}" alt="">
         {{ example.description|markdown }}
       </div>
     {% endfor %}
