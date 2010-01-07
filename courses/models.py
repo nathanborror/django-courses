@@ -101,6 +101,12 @@ class ProjectExample(AbstractModel):
             'object_id': self.pk
         })
 
+    def get_previous(self):
+        return self.get_previous_by_created(project=self.project)
+
+    def get_next(self):
+        return self.get_next_by_created(project=self.project)
+
 
 ASSIGNMENT_TYPES = (
     (0, 'Reading'),
