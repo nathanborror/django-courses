@@ -13,7 +13,7 @@
 
 
 {% block content %}
-  {% load markup %}
+  {% load markup comments %}
 
   {% if project.milestones.count %}
     <h3>Milestones</h3>
@@ -34,4 +34,8 @@
       {% endfor %}
     </ul>
   {% endif %}
+  
+  {% get_comment_list for project as comment_list %}
+  {% include "includes/comment_list.html" %}
+  {% render_comment_form for project %}
 {% endblock %}
