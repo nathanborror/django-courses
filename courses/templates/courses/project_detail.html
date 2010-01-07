@@ -30,7 +30,7 @@
     <h3>Examples</h3>
     <ul>
       {% for example in project.examples.all %}
-        <li><a href="{% url courses:project_examples course_slug=course.slug, slug=project.slug %}#example{{ example.pk }}">{{ example.title }}</a></li>
+        <li><a href="{{ example.get_absolute_url }}">{{ example.title }}</a></li>
       {% endfor %}
     </ul>
   {% endif %}

@@ -22,6 +22,10 @@ urlpatterns = patterns('courses.views',
         view='project_detail',
         name='project'),
 
+    url(r'^(?P<course_slug>[-\w]+)/projects/(?P<slug>[-\w]+)/examples/(?P<object_id>\d+)/$',
+        view='project_example_detail',
+        name='project_example'),
+
     url(r'^(?P<course_slug>[-\w]+)/projects/(?P<slug>[-\w]+)/examples/$',
         view='project_example_list',
         name='project_examples'),

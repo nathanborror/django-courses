@@ -72,6 +72,22 @@ def project_example_list(request, course_slug, slug, **kwargs):
     )
 
 
+def project_example_detail(request, course_slug, slug, object_id, **kwargs):
+    course = get_object_or_404(Course, slug=course_slug)
+    project = get_object_or_404(Project, slug=slug)
+    return list_detail.object_detail(
+        request,
+        queryset=ProjectExample.objects.filter(project__course=course, project=project),
+        object_id=object_id,
+        template_object_name='example',
+        extra_context = {
+            'course': course,
+            'project': project
+        },
+        **kwargs
+    )
+
+
 def project_assignment_list(request, course_slug, slug, **kwargs):
     course = get_object_or_404(Course, slug=course_slug)
     project = get_object_or_404(Project, slug=slug)

@@ -18,8 +18,8 @@
   <div class="list">
     {% for example in example_list %}
       <div class="item" id="example{{ example.pk }}">
-        <h3>{{ example.title }}</h3>
-        <img src="{{ example.image.url }}" alt="">
+        <a href="{{ example.get_absolute_url }}"><img src="{{ example.image.url }}" alt=""></a>
+        <h3><a href="{{ example.get_absolute_url }}">{{ example.title }}</a></h3>
         {{ example.description|markdown }}
       </div>
     {% endfor %}

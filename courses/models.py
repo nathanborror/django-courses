@@ -93,6 +93,13 @@ class ProjectExample(AbstractModel):
     def __unicode__(self):
         return self.title
 
+    @permalink
+    def get_absolute_url(self):
+        return ('courses:project_example', None, {
+            'course_slug': self.project.course.slug,
+            'slug': self.project.slug,
+            'object_id': self.pk
+        })
 
 
 ASSIGNMENT_TYPES = (
