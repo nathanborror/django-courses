@@ -14,13 +14,4 @@
       {% endfor %}
     </ul>
   {% endif %}
-
-  {% if course.assignments.count %}
-    <h4><a href="{% url courses:assignments course_slug=course.slug %}">Assignments</a></h4>
-    <ul>
-      {% for assign in course.assignments.all %}
-      <li{% if assignment %}{% ifequal assignment assign %} class="on"{% endifequal %}{% endif %}><a href="{{ assign.get_absolute_url }}">{{ assign.title }}</a></li>
-      {% endfor %}
-    </ul>
-  {% endif %}
 {% endblock %}
