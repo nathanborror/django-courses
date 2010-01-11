@@ -44,7 +44,7 @@ class Project(AbstractModel):
     class Meta:
         verbose_name = _('project')
         verbose_name_plural = _('projects')
-        ordering = ['-due']
+        ordering = ['due']
 
     def __unicode__(self):
         return self.title
@@ -83,7 +83,7 @@ class ProjectExample(AbstractModel):
     project = models.ForeignKey(Project, related_name='examples')
     title = models.CharField(max_length=255)
     slug = models.SlugField()
-    image = models.FileField(upload_to=get_example_image_path)
+    image = models.FileField(blank=True, upload_to=get_example_image_path)
     description = models.TextField(blank=True)
 
     class Meta:
