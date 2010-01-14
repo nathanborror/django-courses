@@ -39,12 +39,13 @@ class Project(AbstractModel):
     title = models.CharField(max_length=255)
     slug = models.SlugField()
     description = models.TextField(blank=True)
+    start = models.DateTimeField(blank=True, null=True, default=datetime.datetime.now())
     due = models.DateTimeField(blank=True, null=True, default=datetime.datetime.now())
 
     class Meta:
         verbose_name = _('project')
         verbose_name_plural = _('projects')
-        ordering = ['due']
+        ordering = ['start']
 
     def __unicode__(self):
         return self.title
@@ -66,7 +67,7 @@ class ProjectMilestone(AbstractModel):
     class Meta:
         verbose_name = _('project milestone')
         verbose_name_plural = _('project milestones')
-        ordering = ['-due']
+        ordering = ['due']
 
     def __unicode__(self):
         return self.title
@@ -122,12 +123,13 @@ class Assignment(AbstractModel):
     slug = models.SlugField()
     assignment_type = models.PositiveSmallIntegerField(choices=ASSIGNMENT_TYPES, blank=True, null=True)
     description = models.TextField(blank=True)
+    start = models.DateTimeField(blank=True, null=True, default=datetime.datetime.now())
     due = models.DateTimeField(blank=True, null=True, default=datetime.datetime.now())
 
     class Meta:
         verbose_name = _('assignment')
         verbose_name_plural = _('assignments')
-        ordering = ['-due']
+        ordering = ['start']
 
     def __unicode__(self):
         return self.title
