@@ -14,5 +14,10 @@
 
 {% block content %}
   {% load markup %}
-  {{ assignment.description|markdown }}
+
+  {% if now > project.start %}
+    {{ assignment.description|markdown }}
+  {% else %}
+    <h4>This assignment will be available {{ assignment.start|date:"F dS" }} at {{ assignment.start|time }}</h4>
+  {% endif %}
 {% endblock %}

@@ -15,36 +15,40 @@
 {% block content %}
   {% load markup comments %}
 
-  {% if project.milestones.count %}
-    <h3>Milestones</h3>
-    <ul>
-      {% for milestone in project.milestones.all %}
-      <li><span>{{ milestone.due|date|default:'TBA' }}</span> &mdash; {{ milestone }}</li>
-      {% endfor %}
-    </ul>
+  {% if now > project.start %}
+    {% if project.milestones.count %}
+      <h3>Milestones</h3>
+      <ul>
+        {% for milestone in project.milestones.all %}
+        <li><span>{{ milestone.due|date|default:'TBA' }}</span> &mdash; {{ milestone }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {{ project.description|markdown }}
+
+    {% if project.examples.count %}
+      <h3><a href="{% url courses:project_examples course_slug=course.slug, slug=project.slug %}">Examples</a></h3>
+      <ul>
+        {% for example in project.examples.all %}
+          <li><a href="{{ example.get_absolute_url }}">{{ example.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if project.assignments.count %}
+      <h3><a href="{% url courses:assignments course_slug=course.slug %}">Assignments</a></h3>
+      <ul>
+        {% for assign in project.assignments.all %}
+        <li{% if assignment %}{% ifequal assignment assign %} class="on"{% endifequal %}{% endif %}><a href="{{ assign.get_absolute_url }}">{{ assign.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% get_comment_list for project as comment_list %}
+    {% include "includes/comment_list.html" %}
+    {% render_comment_form for project %}
+  {% else %}
+    <h4>This project will be available {{ project.start|date:"F dS" }} at {{ project.start|time }}</h4>
   {% endif %}
-
-  {{ project.description|markdown }}
-
-  {% if project.examples.count %}
-    <h3><a href="{% url courses:project_examples course_slug=course.slug, slug=project.slug %}">Examples</a></h3>
-    <ul>
-      {% for example in project.examples.all %}
-        <li><a href="{{ example.get_absolute_url }}">{{ example.title }}</a></li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-
-  {% if project.assignments.count %}
-    <h3><a href="{% url courses:assignments course_slug=course.slug %}">Assignments</a></h3>
-    <ul>
-      {% for assign in project.assignments.all %}
-      <li{% if assignment %}{% ifequal assignment assign %} class="on"{% endifequal %}{% endif %}><a href="{{ assign.get_absolute_url }}">{{ assign.title }}</a></li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-
-  {% get_comment_list for project as comment_list %}
-  {% include "includes/comment_list.html" %}
-  {% render_comment_form for project %}
 {% endblock %}
