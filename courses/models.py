@@ -45,7 +45,7 @@ class Project(AbstractModel):
     class Meta:
         verbose_name = _('project')
         verbose_name_plural = _('projects')
-        ordering = ['-start']
+        ordering = ['start']
 
     def __unicode__(self):
         return self.title
@@ -129,7 +129,7 @@ class Assignment(AbstractModel):
     class Meta:
         verbose_name = _('assignment')
         verbose_name_plural = _('assignments')
-        ordering = ['-start']
+        ordering = ['start']
 
     def __unicode__(self):
         return self.title
