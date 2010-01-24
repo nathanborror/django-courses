@@ -112,7 +112,8 @@ class ProjectExample(AbstractModel):
 ASSIGNMENT_TYPES = (
     (0, 'Reading'),
     (1, 'Watching'),
-    (2, 'Listening')
+    (2, 'Listening'),
+    (3, 'Writing')
 )
 
 class Assignment(AbstractModel):
