@@ -13,5 +13,14 @@
 
 {% block content %}
   {% load markup %}
+
+  {% if assignments_due %}
+    <div class="assignment_due">
+      {% for assignment in assignments_due %}
+      <p><a href="{{ assignment.get_absolute_url }}">Assignment, <strong>{{ assignment.title }},</strong> is due {{ assignment.due|date:"l, F jS" }}</a></p>
+      {% endfor %}
+    </div>
+  {% endif %}
+
   {{ course.description|markdown }}
 {% endblock %}

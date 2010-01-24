@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import get_object_or_404
 from django.views.generic import date_based, list_detail
 
@@ -14,11 +16,14 @@ def course_list(request, **kwargs):
 
 
 def course_detail(request, course_slug, **kwargs):
+    now = datetime.datetime.now()
+    assignments_due = Assignment.objects.filter(course__slug=course_slug, due__gte=now, start__lte=now)
     return list_detail.object_detail(
         request,
         queryset=Course.objects.all(),
         slug=course_slug,
         template_object_name='course',
+        extra_context = {'assignments_due': assignments_due},
         **kwargs
     )
 
@@ -47,12 +52,17 @@ def project_list(request, course_slug, **kwargs):
 
 def project_detail(request, course_slug, slug, **kwargs):
     course = get_object_or_404(Course, slug=course_slug)
+    now = datetime.datetime.now()
+    assignments_due = Assignment.objects.filter(course=course, due__gte=now, start__lte=now)
     return list_detail.object_detail(
         request,
         queryset=Project.objects.filter(course=course),
         slug=slug,
         template_object_name='project',
-        extra_context = {'course': course},
+        extra_context = {
+            'course': course,
+            'assignments_due': assignments_due
+        },
         **kwargs
     )
 
